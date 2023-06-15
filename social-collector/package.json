@@ -1,7 +1,6 @@
 {
   "name": "social-collector",
   "version": "0.1.0",
-  "homepage": "https://ZmCoder2.github.io/social-collector",
   "private": true,
   "dependencies": {
     "@babel/core": "^7.22.5",
