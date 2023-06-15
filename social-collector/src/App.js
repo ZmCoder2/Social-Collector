@@ -5,6 +5,7 @@ import Categories from '../src/components/Categories/categories';
 import Profile from '../src/components/Profile/profile';
 import Signup from '../src/components/Signup/signup';
 import Login from '../src/components/Login/login';
+
 import './App.css';
 
 
