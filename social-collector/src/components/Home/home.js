@@ -3,15 +3,15 @@ import React from 'react';
 import Navbar from '../Navbar/nav'
 
 
-function HomePage() {
-  return (
-    <Navbar />
-  );
-}
+// function HomePage() {
+//   return (
+//     <Navbar />
+//   );
+// }
 
 
 
-import React from 'react';
+// import React from 'react';
 
 const items = [
   {
@@ -44,6 +44,7 @@ const Homepage = () => {
 
   return (
     <div>
+      <Navbar />
       <h1>Welcome to Social Collector!</h1>
       <div id="item-container">
         {items.map((item, index) => (
