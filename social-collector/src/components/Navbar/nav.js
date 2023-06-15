@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom'
 import './index.css'
-// import { faHome }
+import { faHome, faUser } from '@fortawesome/free-solid-svg-icons'
 
 function Nav() {
   return (
