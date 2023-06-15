@@ -1,18 +1,5 @@
 import React from 'react';
 
-import Navbar from '../Navbar/nav'
-
-
-function HomePage() {
-  return (
-    <Navbar />
-  );
-}
-
-
-
-import React from 'react';
-
 const items = [
   {
     title: "Super Mario Odyssey",
@@ -24,6 +11,7 @@ const items = [
     category: "Sports Memorabilia",
     image: "jordan_basketball.jpg"
   },
+
   {
     title: "One Piece Manga",
     category: "Manga",
@@ -34,17 +22,18 @@ const items = [
     category: "Anime Collectibles",
     image: "naruto_figure.jpg"
   }
-  // Add more items as needed
+  
 ];
 
 const Homepage = () => {
   const onItemClick = (item) => {
+
     console.log("Clicked item:", item);
   };
 
   return (
     <div>
-      <h1>Welcome to Social Collector!</h1>
+      <h1>Welcome to Social Collector!'</h1>
       <div id="item-container">
         {items.map((item, index) => (
           <div
