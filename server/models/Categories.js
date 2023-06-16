@@ -2,12 +2,10 @@ const { Schema, model, Types } = require('mongoose');
 // const bcrypt = require('bcrypt');
 
 const categoriesSchema = new Schema({
-  _id: {
-    type: Schema.Types.ObjectId,
-    default: () => new Types.ObjectId()
-  },
-  
-
+  // _id: {
+  //   type: Schema.Types.ObjectId,
+  //   default: () => new Types.ObjectId()
+  // },
 
   title: {
     type: String,

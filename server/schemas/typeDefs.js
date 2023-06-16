@@ -23,7 +23,7 @@ scalar Date
   type Categories {
     _id: ID!
     title: String
-    dateCreated: Date
+    dateCreated: String
   }
 
   type Mutation {
