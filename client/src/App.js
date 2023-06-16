@@ -15,6 +15,8 @@ import Signup from './pages/Signup';
 import Nav from './components/Nav';
 import { StoreProvider } from './utils/GlobalState';
 import Success from './pages/Success';
+import AddCategory from './components/Categories/addCategory';
+import AddPost from './components/Posts/addPost';
 
 
 const httpLink = createHttpLink({
@@ -55,6 +57,14 @@ function App() {
               <Route 
                 path="/signup" 
                 element={<Signup />} 
+              />
+               <Route 
+                path="/addcategory" 
+                element={<AddCategory />} 
+              />
+              <Route 
+                path="/addpost" 
+                element={<AddPost />} 
               />
               <Route 
                 path="/success" 
