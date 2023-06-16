@@ -31,7 +31,7 @@ const items = [
     category: "Anime Collectibles",
     image: "naruto_figure.jpg"
   }
-  // Add more items as needed
+  
 ];
 
 const Homepage = () => {
