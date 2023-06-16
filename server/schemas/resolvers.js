@@ -56,6 +56,10 @@ const resolvers = {
     },
     addCategory: async (parent, {title }) => {
       const newCategory = await Categories.create({title});
+    },
+
+    addPost: async (parent, {title, description, dateCreated, category, user}) => {
+      const newPost = await Posts.create({title, description, dateCreated, category, user});
     }
 
   },
