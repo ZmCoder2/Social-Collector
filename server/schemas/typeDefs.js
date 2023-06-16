@@ -19,7 +19,7 @@ scalar Date
   type categories {
 
     title: String
-    dateCreated: Date
+    dateCreated: String
   }
 
   type Auth {
