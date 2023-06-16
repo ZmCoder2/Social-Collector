@@ -55,7 +55,7 @@ const Homepage = () => {
           >
             <h3>{item.title}</h3>
             <p>{item.category}</p>
-            <img src={require(`./images/${item.image}`).default} alt={item.title} />
+            {/* <img src={require(`./images/${item.image}`).default} alt={item.title} /> */}
           </div>
         ))}
       </div>
