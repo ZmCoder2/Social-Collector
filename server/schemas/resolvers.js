@@ -54,6 +54,9 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+    addCategory: async (parent, {title }) => {
+      const newCategory = await Categories.create({title});
+    }
 
   },
 };
