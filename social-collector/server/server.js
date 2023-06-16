@@ -1,34 +1,45 @@
-const express = require('express');
-// Import the ApolloServer class
+const express = require("express");
+const path = require("path");
+// Apollo-server-express (deprecates in Oct 2023 to @apollo/server. Keep in mind!)
 const { ApolloServer } = require('apollo-server-express');
 
-// Import the two parts of a GraphQL schema
 const { typeDefs, resolvers } = require('./schemas');
-const db = require('./config/connection');
 
+// mongoose connector
+const db = require("./config/connection");
+// PORT
 const PORT = process.env.PORT || 3001;
-const server = new ApolloServer({
-  typeDefs,
-  resolvers
+
+// Instantiate new Apolloserver
+const apolloServer = new ApolloServer({
+    typeDefs,
+    resolvers
 });
 
+// Express
 const app = express();
 
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
-// Create a new instance of an Apollo server with the GraphQL schema
+if(process.env.NODE_ENV === 'production') {
+    // To READ the react content when it is deployed in the internet
+    app.use(express.static(path.join(__dirname, '../client/build')));
+}
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
+
+// Start Apolloserver, then connect to express, connect to mongoose, THEN start the app
 const startApolloServer = async () => {
-await server.start();
-server.applyMiddleware({ app });
+    await apolloServer.start();
+    apolloServer.applyMiddleware({ app });
+    db.once('open', () => {
+        app.listen(PORT, () => {
+            console.log("Server running on PORT 3001!");
+        })
+    })
+}
 
-db.once('open', () => {
-  app.listen(PORT, () => {
-    console.log(`API server running on port ${PORT}!`);
-    console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
-  })
-})
-};
-
-// Call the async function to start the server
 startApolloServer();
