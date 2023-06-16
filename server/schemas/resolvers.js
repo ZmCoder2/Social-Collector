@@ -1,12 +1,17 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { Profile } = require('../models');
+// const { Profile } = require('../models');
 const { signToken } = require('../utils/auth');
-//const Users = require('../models/users');
+const Users = require('../models/Users.js');
+const Categories = require('../models/Categories');
 
 const resolvers = {
   Query: {
     users: async () => {
       return Users.find();
+    },
+    
+    Categories: async () => {
+      return Categories.find();
     },
 
 //     profile: async (parent, { UsersId }) => {
@@ -22,26 +27,26 @@ const resolvers = {
   },
   Mutation: {
     addUser: async (parent, { name, email, password }) => {
-      const Users = await Users.create({ name, email, password });
-      const token = signToken(Users);
+      const newUser = await Users.create({ name, email, password });
+      const token = signToken(newUser);
 
-      return { token, Users };
+      return { token, user: newUser };
     },
     login: async (parent, { email, password }) => {
-      const users = await users.findOne({ email });
+      const user = await Users.findOne({ email });
 
-      if (!Users) {
+      if (!user) {
         throw new AuthenticationError('No profile with this email found!');
       }
 
-      const correctPw = await Users.isCorrectPassword(password);
+      const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
         throw new AuthenticationError('Incorrect password!');
       }
 
-      const token = signToken(Users);
-      return { token, Users };
+      const token = signToken(user);
+      return { token, user };
     },
 
     // Add a third argument to the resolver to access data in our `context`
