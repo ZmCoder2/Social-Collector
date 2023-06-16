@@ -7,6 +7,7 @@ const categoriesSchema = new Schema({
     default: () => new Types.ObjectId()
   },
   
+
   title: {
     type: String,
     required: true,
