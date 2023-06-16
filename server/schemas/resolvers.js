@@ -3,6 +3,10 @@ const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 const Users = require('../models/Users.js');
 const Categories = require('../models/Categories.js');
+const Posts = require('../models/Posts.js');
+const Followers = require('../models/Followers');
+const Likes = require('../models/Likes');
+
 
 const resolvers = {
   Query: {
@@ -12,6 +16,18 @@ const resolvers = {
     
     categories: async () => {
       return Categories.find();
+    },
+
+    posts: async () => {
+      return Posts.find();
+    },
+
+    followers: async () => {
+      return Followers.find();
+    },
+    
+    likes: async () => {
+      return Likes.find();
     },
     
   },

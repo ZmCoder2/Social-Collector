@@ -1,4 +1,7 @@
 const Users = require('./Users');
-const Categories = require('./Categories')
+const Categories = require('./Categories');
+const Posts = require('./Posts');
+const Followers = require('./Followers');
+const Likes = require('./Likes');
 
-module.exports = { Users, Categories };
+module.exports = { Users, Categories, Posts, Followers };
