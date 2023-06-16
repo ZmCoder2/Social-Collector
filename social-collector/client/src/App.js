@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
-import Home from '../src/components/Home/home';
-import Categories from '../src/components/Categories/categories';
-import Profile from '../src/components/Profile/profile';
-import Signup from '../src/components/Signup/signup';
-import Login from '../src/components/Login/login';
+import Home from './components/Home/home';
+import Categories from './components/Categories/categories';
+import Profile from './components/Profile/profile';
+import Signup from './components/Signup/signup';
+import Login from './components/Login/login';
 import './App.css';
 
 
