@@ -42,6 +42,16 @@ function Nav() {
               Login
             </Link>
           </li>
+          <li className="mx-1">
+            <Link to="/addcategory">
+              add Cat
+            </Link>
+          </li>
+          <li className="mx-1">
+            <Link to="/addpost">
+              add post
+            </Link>
+          </li>
         </ul>
       );
     }

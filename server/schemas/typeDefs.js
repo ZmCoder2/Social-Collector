@@ -53,7 +53,7 @@ scalar Date
     addUser(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addCategory(title: String!): Categories
-    addPost(title: String!, description: String!, dateCreated: Date, category: String!, user: String!): Posts
+    addPost(title: String!, description: String!, dateCreated: Date, category: String, user: String): Posts
 
   }
 `;
