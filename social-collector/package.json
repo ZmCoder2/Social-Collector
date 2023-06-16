@@ -9,7 +9,8 @@
     "build": "cd client && npm run build",
     "start": "npm run build && cd server && node server.js",
     "server": "cd server && nodemon server.js",
-    "client": "cd client && npm start"
+    "client": "cd client && npm start",
+    "graphql": "node graphql-server.js"
   },
   "keywords": [],
   "author": "",
