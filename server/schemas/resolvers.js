@@ -6,7 +6,7 @@ const Categories = require('../models/Categories.js');
 
 const resolvers = {
   Query: {
-    viewUsers: async () => {
+    users: async () => {
       return await Users.find();
     },
     
