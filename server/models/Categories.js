@@ -12,16 +12,8 @@ const categoriesSchema = new Schema({
     required: true,
     unique: true,
  
-  },
-  dateCreated: {
-    type: Date,
-    default: Date.now(),
-    get: (date) => new Date(date).toLocaleDateString(),
   }
-  }, {
-    toJSON: {
-      getters: true
-    },
+ 
 });
 
 const Categories = model('Categories', categoriesSchema);
