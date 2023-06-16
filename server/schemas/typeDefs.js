@@ -2,6 +2,8 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
 
+scalar Date
+
   type Users {
     _id: ID!
     name: String!
@@ -50,7 +52,9 @@ const typeDefs = gql`
   type Mutation {
     addUser(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addCategory(title: String!): [Categories!]!
+    addCategory(title: String!): Categories
+    addPost(title: String!, description: String!, dateCreated: Date, category: String!, user: String!): Posts
+
   }
 `;
 
