@@ -8,6 +8,7 @@ const categoriesSchema = new Schema({
   },
   
 
+
   title: {
     type: String,
     required: true,
