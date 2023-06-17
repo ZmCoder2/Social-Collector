@@ -2,9 +2,9 @@ const { Schema, model } = require('mongoose');
 
 
 const followersSchema = new Schema({
-    usersId: {
+    userId: {
         type: Schema.Types.ObjectId,
-        ref: 'Users',
+        ref: 'User',
         required: true,
       },
 });

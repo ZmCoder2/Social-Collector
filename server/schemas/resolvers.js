@@ -1,7 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
 // const { Profile } = require('../models');
 const { signToken } = require('../utils/auth');
-const Users = require('../models/Users.js');
+const User = require('../models/User.js');
 const Categories = require('../models/Categories.js');
 const Posts = require('../models/Posts.js');
 const Followers = require('../models/Followers');
@@ -10,8 +10,8 @@ const Likes = require('../models/Likes');
 
 const resolvers = {
   Query: {
-    users: async () => {
-      return await Users.find();
+    user: async () => {
+      return await User.find();
     },
     
     categories: async () => {
@@ -32,14 +32,22 @@ const resolvers = {
     
   },
   Mutation: {
-    addUser: async (parent, { name, email, password }) => {
-      const newUser = await Users.create({ name, email, password });
-      const token = signToken(newUser);
 
-      return { token, user: newUser };
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
+      const token = signToken(user);
+
+      return { token, user };
+    },
+    updateUser: async (parent, args, context) => {
+      if (context.user) {
+        return await User.findByIdAndUpdate(context.user._id, args, { new: true });
+      }
+
+      throw new AuthenticationError('Not logged in');
     },
     login: async (parent, { email, password }) => {
-      const user = await Users.findOne({ email });
+      const user = await User.findOne({ email });
 
       if (!user) {
         throw new AuthenticationError('No profile with this email found!');
