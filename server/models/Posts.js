@@ -14,9 +14,9 @@ const postsSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Categories',
   },
-  usersId: {
+  userId: {
     type: Schema.Types.ObjectId,
-    ref: 'Users',
+    ref: 'User',
   },
   dateCreated: {
     type: Date,

@@ -4,45 +4,44 @@ const typeDefs = gql`
 
 scalar Date
 
-  type Users {
-    _id: ID!
-    name: String!
-    email: String!
-    password: String!
+  type User {
+    _id: ID
+    username: String
+    email: String
   }
 
   type Categories {
-    _id: ID!
+    _id: ID
     title: String!
 
   }
 
   type Posts {
-    _id: ID!
+    _id: ID
     title: String!
     description: String!
     category: Categories!
-    user: Users!
+    user: User!
   }
 
   type Followers {
-    _id: ID!
-    users: Users!
+    _id: ID
+    user: User!
   }
 
   type Likes {
-    _id: ID!
-    users: Users!
-    posts: Posts!
+    _id: ID
+    user: User
+    posts: Posts
   }
 
   type Auth {
-    token: ID!
-    user: Users!
+    token: ID
+    user: User
   }
 
   type Query {
-    users: [Users]!
+    user: User
     categories: [Categories]!
     posts: [Posts]!
     followers: [Followers]!
@@ -50,10 +49,11 @@ scalar Date
   }
 
   type Mutation {
-    addUser(name: String!, email: String!, password: String!): Auth
-    login(email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!): Auth
+    updateUser(username: String, email: String, password: String): User
     addCategory(title: String!): Categories
     addPost(title: String!, description: String!, dateCreated: Date, category: String, user: String): Posts
+    login(email: String!, password: String!): Auth
 
   }
 `;

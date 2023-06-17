@@ -1,34 +1,22 @@
 {
-  "name": "social-collector",
+  "name": "mern-shopping",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server/server.js",
   "scripts": {
+    "start": "node server --ignore client",
+    "dev": "concurrently \"cd server && npm run start\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
-    "dev": "concurrently \"npm run client\" \"npm run server\" ",
-    "build": "cd client && npm run build",
-    "start": "npm run build && cd server && node server.js",
-    "server": "cd server && nodemon server.js",
-    "client": "cd client && npm start"
+    "seed": "cd server && npm run seed",
+    "build": "cd client && npm run build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^8.2.0",
-    "nodemon": "^2.0.22"
+    "concurrently": "^5.1.0"
   },
   "dependencies": {
-    "@fortawesome/free-solid-svg-icons": "^6.4.0",
-    "@stripe/stripe-js": "^1.54.0",
-    "apollo-server-express": "^3.12.0",
-    "axios": "^1.4.0",
-    "bcrypt": "^5.1.0",
-    "jsonwebtoken": "^9.0.0",
-    "mongoose": "^7.3.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.13.0",
-    "react-scripts": "^5.0.1",
-    "web-vitals": "^3.3.2"
+    "jsonwebtoken": "^9.0.0"
   }
 }
