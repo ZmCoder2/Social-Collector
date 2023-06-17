@@ -6,8 +6,8 @@ scalar Date
 
   type User {
     _id: ID
-    username: String
-    email: String
+    username: String!
+    email: String!
   }
 
   type Categories {
@@ -50,9 +50,9 @@ scalar Date
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
-    updateUser(username: String, email: String, password: String): User
+    updateUser(username: String!, email: String, password: String): User
     addCategory(title: String!): Categories
-    addPost(title: String!, description: String!, dateCreated: Date, category: String, user: String): Posts
+    addPost(title: String!, description: String!, dateCreated: Date, category: Categories!, user: String): Posts
     login(email: String!, password: String!): Auth
 
   }

@@ -67,7 +67,7 @@ const resolvers = {
     },
 
     addPost: async (parent, {title, description, dateCreated, category, user}) => {
-      const newPost = await Posts.create({title, description, dateCreated, category, user});
+      const selectedCategory = await Posts.create({title, description, dateCreated, category, user});
     }
 
   },
