@@ -1,0 +1,16 @@
+.card-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card {
+  width: 48%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f7f7f7;
+}
+
+.card h2 {
+  margin-top: 0;
+}
