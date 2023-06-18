@@ -27,7 +27,15 @@ if (process.env.NODE_ENV === 'production') {
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
-
+app.get('/api/profile', async (req, res) => {
+  try {
+    const user = await User.findOne(); // Adjust this query based on how you want to retrieve the user data
+    res.json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async () => {

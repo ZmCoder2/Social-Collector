@@ -14,7 +14,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Nav from './components/Nav';
 import { StoreProvider } from './utils/GlobalState';
-import Success from './pages/Success';
+import Profile from './pages/Profile';
 import AddCategory from './components/Categories/addCategory';
 import AddPost from './components/Posts/addPost';
 
@@ -67,9 +67,10 @@ function App() {
                 element={<AddPost />} 
               />
               <Route 
-                path="/success" 
-                element={<Success />} 
+                path="/profile" 
+                element={<Profile />} 
               />
+              
             
               
             </Routes>

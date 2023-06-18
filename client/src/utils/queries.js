@@ -48,7 +48,7 @@ export const QUERY_CATEGORIES = gql`
   }
 `;
 
-export const QUERY_USER = gql`
+export const SHOW_PROFILE = gql`
   {
     user {
       username
@@ -60,9 +60,6 @@ export const QUERY_USER = gql`
           _id
           name
           description
-          price
-          quantity
-          image
         }
       }
     }

@@ -42,7 +42,7 @@ function Nav() {
               Home
             </Link>
           </li>
-          {/* <li className="mx-1"> || i personally dont think we should have this because the user has not logged in yet.
+          {/* <li className="mx-1"> || i personally dont think we should have this because the user has not logged in
             <Link to="/profile">
               Profile
             </Link>
