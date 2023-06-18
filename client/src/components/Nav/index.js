@@ -9,14 +9,29 @@ function Nav() {
       return (
         <ul className="flex-row">
           <li className="mx-1">
-            
+            <Link to="/">
+              Home
+            </Link>
           </li>
           <li className="mx-1">
+            <Link to="/profile">
+              Profile
+            </Link>
+          </li>
+          <li className="mx-1">
+            <Link to="/addcategory">
+              Add Category
+            </Link>
+          </li>
+          <li className="mx-1">
+            <Link to="/addpost">
+              Add Post
+            </Link>
+          </li>
             {/* this is not using the Link component to logout or user and then refresh the application to the start */}
             <a href="/" onClick={() => Auth.logout()}>
               Logout
             </a>
-          </li>
         </ul>
       );
     } else {
@@ -27,11 +42,11 @@ function Nav() {
               Home
             </Link>
           </li>
-          <li className="mx-1">
+          {/* <li className="mx-1"> || i personally dont think we should have this because the user has not logged in yet.
             <Link to="/profile">
               Profile
             </Link>
-          </li>
+          </li> */}
           <li className="mx-1">
             <Link to="/signup">
               Signup
@@ -44,12 +59,12 @@ function Nav() {
           </li>
           <li className="mx-1">
             <Link to="/addcategory">
-              add Cat
+              Add Category
             </Link>
           </li>
           <li className="mx-1">
             <Link to="/addpost">
-              add post
+              Add Post
             </Link>
           </li>
         </ul>
