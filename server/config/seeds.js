@@ -35,14 +35,14 @@ db.once('open', async () => {
           image: 'toilet-paper.jpg',
         },
         {
-          name: 'Handmade Soap',
+          title: 'Handmade Soap',
           category: categories[1]._id,
           description:
             'Praesent placerat, odio vel euismod venenatis, lectus arcu laoreet felis, et fringilla sapien turpis vestibulum nisl.',
           image: 'soap.jpg',
         },
         {
-          name: 'Set of Wooden Spoons',
+          title: 'Set of Wooden Spoons',
           category: categories[1]._id,
           description:
             'Vivamus ut turpis in purus pretium mollis. Donec turpis odio, semper vel interdum ut, vulputate at ex. Duis dignissim nisi vel tortor imperdiet finibus. Aenean aliquam sagittis rutrum.',
@@ -90,7 +90,7 @@ db.once('open', async () => {
           image: 'teddy-bear.jpg',
         },
         {
-          name: 'Alphabet Blocks',
+          title: 'Alphabet Blocks',
           category: categories[4]._id,
           description:
             'Morbi consectetur viverra urna, eu fringilla turpis faucibus sit amet. Suspendisse potenti. Donec at dui ac sapien eleifend hendrerit vel sit amet lectus.',
@@ -102,8 +102,7 @@ db.once('open', async () => {
   await User.deleteMany();
 
   await User.create({
-    firstName: 'Pamela',
-    lastName: 'Washington',
+    username: 'Pamela2',
     email: 'pamela@testmail.com',
     password: 'password12345',
     posts: [
@@ -114,8 +113,7 @@ db.once('open', async () => {
   });
 
   await User.create({
-    firstName: 'Elijah',
-    lastName: 'Holt',
+    username: 'Elijah1',
     email: 'eholt@testmail.com',
     password: 'password12345'
   });
