@@ -13,13 +13,13 @@ const GET_POSTS = gql`
 `;
 
 const PostDetails = () => {
-  const { postId } = useParams();
+ 
   const { loading, error, data } = useQuery(GET_POSTS);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error fetching posts: {error.message}</p>;
 
-  const post = data.posts.find((post) => post._id === String(postId));
+  const post = data.posts.find((posts) => posts._id );
 
   if (!post) return <p>Post not found.</p>;
 
