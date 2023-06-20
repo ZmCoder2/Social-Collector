@@ -10,7 +10,7 @@ function Nav() {
             <a href="/" className="flex items-center">
               <img src="" className="h-8 mr-3" alt="" />
               <span className="self-center text-2xl font-semibold whitespace-nowrap text-white dark:text-white">
-                Socialitae
+                Social Collector
               </span>
             </a>
             <button
