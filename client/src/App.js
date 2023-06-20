@@ -1,26 +1,22 @@
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { createUploadLink } from 'apollo-upload-client';
+import { setContext } from '@apollo/client/link/context';
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  createHttpLink,
-} from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
-
 import Home from './pages/Home';
-
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Nav from './components/Nav';
-import { StoreProvider } from './utils/GlobalState';
 import Profile from './pages/Profile';
 import AddCategory from './components/Categories/addCategory';
 import AddPost from './components/Posts/addPost';
+import PrivateRoutes from "./PrivateRoutes";
+import RenderPosts from './pages/Posts';
+import FullPost from './components/Posts/FullPost';
+import CategoryPosts from './components/Categories/CategoryPosts';
 
-
-const httpLink = createHttpLink({
-  uri: '/graphql',
+const httpLink = createUploadLink({
+  uri: 'http://localhost:3000/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -42,39 +38,22 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div>
-          <StoreProvider>
-            <Nav />
-            <Routes>
-              <Route 
-                path="/" 
-                element={<Home />} 
-              />
-              <Route 
-                path="/login" 
-                element={<Login />} 
-              />
-              <Route 
-                path="/signup" 
-                element={<Signup />} 
-              />
-               <Route 
-                path="/addcategory" 
-                element={<AddCategory />} 
-              />
-              <Route 
-                path="/addpost" 
-                element={<AddPost />} 
-              />
-              <Route 
-                path="/profile" 
-                element={<Profile />} 
-              />
-              
-            
-              
-            </Routes>
-          </StoreProvider>
+        <div className="container mx-auto">
+          <Nav />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route element={<PrivateRoutes />}>
+              <Route path="/addcategory" element={<AddCategory />} />
+              <Route path="/addpost" element={<AddPost />} />
+              <Route path="/profile" element={<Profile />} />
+            </Route>
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/posts" element={<RenderPosts />} />
+            <Route path="/posts/:postsId" element={<FullPost />} />
+            <Route path="/categories/:categoryId" element={<CategoryPosts />} />
+          </Routes>
         </div>
       </Router>
     </ApolloProvider>
