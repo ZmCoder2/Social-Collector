@@ -1,19 +1,25 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+  scalar Date
+  scalar Upload
 
-scalar Date
+  type File {
+    url: String!
+  }
 
   type User {
     _id: ID
     username: String
     email: String
+    posts: [Posts]
+    followers: [User]
   }
 
   type Categories {
     _id: ID
-    title: String!
-
+    name: String!
+    posts: [Posts]
   }
 
   type Posts {
@@ -22,6 +28,15 @@ scalar Date
     description: String!
     category: Categories!
     user: User!
+    comments: [Comment]
+    image: String
+  }
+
+  type Comment {
+    _id: ID
+    commentBody: String
+    username: String
+    createdAt: String
   }
 
   type Followers {
@@ -41,20 +56,28 @@ scalar Date
   }
 
   type Query {
-    user: User
+    user: User!
     categories: [Categories]!
     posts: [Posts]!
     followers: [Followers]!
     likes: [Likes]!
+    viewUser: [User]
+    viewPost: [Posts]
+    hello: String!
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     updateUser(username: String, email: String, password: String): User
-    addCategory(title: String!): Categories
-    addPost(title: String!, description: String!, dateCreated: Date, category: String, user: String): Posts
+    addCategory(name: String!): Categories
+    addPost(
+      title: String!
+      description: String!
+      category: String!
+      user: String!
+    ): Posts
     login(email: String!, password: String!): Auth
-
+    uploadFile(file: Upload!): File!
   }
 `;
 
