@@ -1,54 +1,71 @@
-const express = require('express');
+const express = require("express");
+const path = require("path");
+const multer = require('multer');
+
+// Apollo-server-express (deprecates in Oct 2023 to @apollo/server. Keep in mind!)
 const { ApolloServer } = require('apollo-server-express');
-const path = require('path');
-const { authMiddleware } = require('./utils/auth');
-
 const { typeDefs, resolvers } = require('./schemas');
-const db = require('./config/connection');
 
+// mongoose connector
+const db = require("./config/connection");
+// PORT
 const PORT = process.env.PORT || 3001;
-const app = express();
-const server = new ApolloServer({
+
+// Instantiate new Apolloserver
+const apolloServer = new ApolloServer({
   typeDefs,
-  resolvers,
-  context: authMiddleware,
+  resolvers
 });
+
+// Express
+const app = express();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// Serve up static assets
-app.use('/images', express.static(path.join(__dirname, '../client/images')));
-
 if (process.env.NODE_ENV === 'production') {
+  // To READ the react content when it is deployed on the internet
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
-app.get('/api/profile', async (req, res) => {
-  try {
-    const user = await User.findOne(); // Adjust this query based on how you want to retrieve the user data
-    res.json(user);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
 });
 
-// Create a new instance of an Apollo server with the GraphQL schema
+// Create the multer middleware
+const upload = multer({ storage: storage });
+
+app.post('/upload', upload.single('image'), (req, res) => {
+  // The uploaded file can be accessed using req.file
+  // You can store the file path in your database or perform other operations
+
+  res.json({ message: 'File uploaded successfully' });
+});
+
+// Set the Apollo Server middleware and add the Apollo-Require-Preflight header
+app.use((req, res, next) => {
+  res.set('Apollo-Require-Preflight', 'true');
+  next();
+});
+
+// Start Apolloserver, then connect to express, connect to mongoose, THEN start the app
 const startApolloServer = async () => {
-  await server.start();
-  server.applyMiddleware({ app });
-  
+  await apolloServer.start();
+  apolloServer.applyMiddleware({ app, path: '/graphql' });
   db.once('open', () => {
     app.listen(PORT, () => {
-      console.log(`API server running on port ${PORT}!`);
-      console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
-    })
-  })
-  };
-  
-// Call the async function to start the server
-  startApolloServer();
+      console.log("Server running on PORT 3001!");
+    });
+  });
+};
+
+startApolloServer();
