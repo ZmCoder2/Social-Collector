@@ -1,17 +1,21 @@
 const { Schema, model, Types } = require('mongoose');
 // const bcrypt = require('bcrypt');
 
-const categoriesSchema = new Schema({
+const Categorieschema = new Schema({
 
-  title: {
+  name: {
     type: String,
     required: true,
     unique: true,
  
+  },
+  postId: {
+    type: Schema.Types.ObjectId,
+    ref: 'Posts',
   }
  
 });
 
-const Categories = model('Categories', categoriesSchema);
+const Categories = model('Categories', Categorieschema);
 
 module.exports = Categories;

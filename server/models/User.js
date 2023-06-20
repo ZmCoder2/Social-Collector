@@ -19,8 +19,24 @@ const userSchema = new Schema({
     required: true,
     minlength: 5
   },
+  followers: [{ 
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+}]
   
-});
+},
+{
+  toJSON: {
+      virtuals: true,
+  },
+  id: false,
+})
+
+userSchema
+  .virtual('Followers')
+  .get(function() {
+    return this.followers.length;
+  });
 
 // set up pre-save middleware to create password
 userSchema.pre('save', async function(next) {

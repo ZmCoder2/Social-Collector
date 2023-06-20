@@ -12,16 +12,21 @@ const postsSchema = new Schema({
   },
   categoryId: {
     type: Schema.Types.ObjectId,
+    required: true,
     ref: 'Categories',
   },
-  userId: {
+  user: {
     type: Schema.Types.ObjectId,
+    required: true,
     ref: 'User',
   },
   dateCreated: {
     type: Date,
     default: Date.now(),
     get: (date) => new Date(date).toLocaleDateString(),
+  },
+  image: {
+    type: String,
   },
 });
 
